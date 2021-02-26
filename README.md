@@ -5,16 +5,6 @@
 <hr />
 <br />
 
-<i> <strong> For now to access your the Web Page, just: </i> </strong> 
-
-<ul>
-
-<li> localhost:your-port-number </li>
-
-</ul>
-
-<br />
-
 ### To Compile and Execute:
 
     - make execute_and_compile
@@ -28,6 +18,16 @@
     - make
 
 <hr />
+
+<br />
+
+### For now to access your Web Page, just: 
+
+<ul>
+
+<li> localhost:your-port-number </li>
+
+</ul>
 
 <br />
 
