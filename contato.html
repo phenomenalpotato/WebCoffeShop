@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Modelo do Site - Cafeteria</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="css/cafeteria.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+
+</head>
+<body>
+	<header>
+	<nav class="orange darken-4">
+
+		<!--permitir que o links troquem de posição indo para o 
+			icone hamburguer quando a página ficar muito pequena
+		-->
+	
+	<div class="nav-wrapper">
+		<a href="index.html" class="brand-logo">CB</a>
+		
+		<a href="#" data-activates="mobile-demo" class="button-collapse">Menu > 
+		</a>
+		
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="contato.html">Trabalhe Conosco</a></li>
+		</ul>
+
+
+		<ul class="side-nav" id="mobile-demo">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="contato.html">Trabalhe Conosco</a></li>
+		</ul>
+
+
+		</div>
+
+	</nav>	
+	</header>
+	<main>
+		<section id="painel">
+			<div class="carousel carousel-slider center" data-indicators="true">
+
+				<div class="carousel-item white">
+					<img src="/imagens/cafeteria2.png" alt="A cafeteria">
+				</div>
+
+
+				<div class="carousel-item white">
+					<img src="imagens/cafe2.jpg" alt="Café especial">
+				</div>
+
+
+				<div class="carousel-item white">
+					<img src="imagens/lanche13.jpg" alt="Lanche da casa">
+				</div>
+
+				<div class="carousel-item white">
+					<img src="imagens/pao4.jpg" alt="Pão filão">
+				</div>
+			</div>
+		</section>
+		
+		<section id="conteudo1">
+
+			<form action="cad.jsp" method="post">
+	
+
+		<h3>Contato:</h3>
+
+			<br>
+
+	<label for="txtNome">Nome:</label>
+	<input type="text" name="txtNome" id="txtNome" required placeholder="Seu Nome:">
+
+	<label for="txtEmail">E-mail:</label>
+	<input type="email" name="txtEmail" id="txtEmail" required placeholder="exmplo@dominio.com.br">
+	
+	<label for="txtTel">Telefone:</label>
+	<input type="text" name="txtTel" id="txtTel" maxlength="12" required placeholder="Seu Telefone:">
+
+	<label for="txtDisponivel">Dias Disponíveis:</label>
+	<input type="date" name="txtDisponivel" id="txtDisponivel" required placeholder="dd/mm/aaaa:">
+
+	
+	<label for="txtVaga">Qual Vaga:</label>
+	<input type="text" name="txtVaga" id="txtVaga" required placeholder="Vaga:">
+
+	<label for="txtArquivo">Adicione o Seu Currículo:</label>
+
+	<br>
+
+	
+	<input type="file" name="file">
+
+	<br>
+	<br>
+	
+	<label for="txtMensagem">Mensagem:</label>
+	<textarea name="txtMensagem" id="txtMensagem" placeholder="Escreva a sua Experiência Profissional!"></textarea>
+	<input type="submit" name="Enviar" >
+
+
+
+	</form>
+
+
+	</form>
+		</section>
+
+
+	</main>
+	<footer>
+		
+		<div id="endereco">
+			Av. Luiz bla bla, 9109 - Jardim do lado de la - Soa - PP<br>
+			Telefone: 11 - 0000-00009 | 11 - 0000-00009<br>
+			<a href="mailto:contato@cafeteriacafeteriacafeteria.com?Subject=contato&cc=contato2@cafeteria.com.br&body=Obrigado por enviar sua mensagem">
+				contato@cafeteriacafeteriacafeteria.com.br
+			</a>
+
+		</div>
+
+
+		<div id="redes">
+			<ul>
+				<li><a href="http://www.facebook.com" target="_blank">
+					<i class="fa fa-facebook"></i> Facebook</a>
+				</li>
+				
+				<li><a href="http://www.twitter.com" target="_blank">
+					<i class="fa fa-twitter"></i> Twitter</a>
+				</li>
+
+				<li><a href="http://www.instagram.com" target="_blank">
+					<i class="fa fa-instagram"></i> Instagram</a>
+				</li>
+			</ul>
+			
+		</div>
+
+	</footer>	
+
+
+
+<!--importação dos script de jquery e materialize-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+<!--Aplicação do comportamento de jquery para o menu de hamburguer 
+	aparecer e realiazar as manipulações-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.button-collapse').sideNav();
+		$('.carousel.carousel-slider').carousel({fullWidth:false});
+	});
+
+</script>
+
+
+
+
+
+</body>
+</html>

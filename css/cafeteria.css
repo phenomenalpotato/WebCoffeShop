@@ -1,0 +1,83 @@
+/*zerando as margens do navegado*/
+body{
+	margin:0px;/*zerando as margens externas*/
+	padding:0px;/*zerando as margens internas*/
+	/*vamos adicionar uma imagens de fundo. 
+	Um background que irá completar	toda a tela*/
+	background-image:url("../imagens/cafeteria1.jpg");
+	/*ocupar a tela inteira*/
+	background-size:100% 100%;
+	/*fixar a imagem ao plano de fundo. Travar a imagem no fundo da tela*/
+	background-attachment: fixed;
+}
+#painel{
+	background: white;
+}
+#conteudo1{
+	background: rgba(255,255,255,.9);
+	padding: 2%;
+	margin-bottom: 10%;
+}
+#conteudo1 h2{
+	font-family: arial, verdana, impact;
+	font-size:30pt;
+	text-shadow: 2px 2px 5px #ccc;
+	text-align: center;
+}
+
+footer{
+	padding:10% 0%;
+	background: black
+}
+footer #endereco{
+	float:left;
+	width:25%;
+	margin-left: 2%;
+	color:white;
+}
+footer #redes{
+	float: left;
+	width: 20%;
+	margin-left: 2%
+	color:white;
+}
+footer iframe{
+	width: 50%;
+	height:300px;
+	margin-left: 2%; 
+}
+
+div.card-image #anime1, div.card-image:hover #anime0{
+
+	opacity: 1;
+	transition-property:opacity;
+	transition-duration:0.7s;
+	transition-timing-function:linear;
+	position: relative;
+
+}
+
+div.card-image:hover #anime1, div.card-image #anime0{
+
+	opacity: 0;
+	transition-property:opacity;
+	transition-duration:0.7s;
+	transition-timing-function:linear;
+	position: absolute;
+}
+
+p{
+
+	font-family: 'Indie Flower', cursive;
+	font-weight: bold;
+}
+
+section#conteudo1 h2{
+
+	font-family: 'Inconsolata', monospace;
+}
+
+h3{
+
+	font-family: 'Lobster', cursive;
+}
