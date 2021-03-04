@@ -1,4 +1,35 @@
-#include "crow.h"
+#include "crow_all.h"
+#include "s3-upload.cpp"
+#include <iostream>
+using namespace std;
+
+ int send_to_s3(string file_name,string file_data){
+     //If not string vazia
+
+     //Encoding
+
+
+     cout << "Saving: " << file_name;
+     std::ofstream out(file_name);
+     out << file_data;
+     out.close();
+
+     Aws::SDKOptions options;
+     Aws::InitAPI(options);
+     {
+         const Aws::String bucket_name = "prog-ttest-1";
+         const Aws::String object_name = file_name;
+         const Aws::String region = "us-east-1";
+
+         if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
+             return 1;
+         }
+     }
+     Aws::ShutdownAPI(options);
+
+     // return;
+     return 0;
+ }
 
 int main(void) {
 
@@ -34,6 +65,20 @@ int main(void) {
         return index.render();
 
     });
+
+  //  CROW_ROUTE(app, "/send")
+  //      .methods("POST"_method)
+  //  ([](const crow::request& req)
+  //  {
+        // simply by reading a crow::request
+        // crow::multipart::message
+        // Once a multipart message has been made, the individual parts can be accessed throught mpmes.parts, parts is an std::vector, so accessing the individual parts should be straightforward.
+        // In order to access the individual part's name or filename, something like mpmes.parts[0].headers[0].params["name"] sould do the trick.
+    //    auto msg = crow::multipart::message(req);
+        // Parts index is defined by the HTML form.
+    //    send_to_s3(msg.parts[5].headers[0].params["filename"],msg.parts[5].body);
+    //    return "";
+    //});
 
     CROW_ROUTE(app, "/css/cafeteria.css") ([]() {
 
@@ -93,7 +138,7 @@ int main(void) {
 
         return img1;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/cafe2.jpg") ([] () {
 
@@ -103,7 +148,7 @@ int main(void) {
 
         return img3;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/lanche13.jpg") ([] () {
 
@@ -113,7 +158,7 @@ int main(void) {
 
         return img5;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/pao4.jpg") ([] () {
 
@@ -123,7 +168,7 @@ int main(void) {
 
         return img7;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/cafe3.jpg") ([] () {
 

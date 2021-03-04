@@ -21,6 +21,10 @@
 
 <br />
 
+### You can also run more easily using a docker environment, just execute the script:
+
+    - ./docker_run.sh
+
 ### For now to access your Web Page, just: 
 
 <ul>
