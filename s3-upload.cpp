@@ -59,21 +59,21 @@ bool AwsDoc::S3::PutObject(const Aws::String& bucketName,
     }
 }
 
-//int main()
-//{
-    //Aws::SDKOptions options;
-    //Aws::InitAPI(options);
-    //{
-        //const Aws::String bucket_name = "my-bucket";
-        //const Aws::String object_name = "my-file.txt";
-        //const Aws::String region = "us-east-1";
+// int main(void) {
 
-        //if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
+//     Aws::SDKOptions options;
+//     Aws::InitAPI(options);
+//     {
+//         const Aws::String bucket_name = "my-bucket";
+//         const Aws::String object_name = "my-file.txt";
+//         const Aws::String region = "us-east-1";
 
-        //    return 1;
-      //  }
-    //}
-  //  Aws::ShutdownAPI(options);
+//         if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
 
-//    return 0;
-//}
+//             return 1;
+//         }
+//     }
+//     Aws::ShutdownAPI(options);
+
+//     return 0;
+// }

@@ -19,4 +19,4 @@ add_executable(gamer gamer.cpp)
 target_compile_features(gamer PUBLIC cxx_std_11)
 
 # The libraries used by your executable.
-target_link_libraries(gamer ${AWSSDK_LINK_LIBRARIES})
+target_link_libraries(gamer ${AWSSDK_LINK_LIBRARIES} -lboost_thread -lboost_system -pthread)

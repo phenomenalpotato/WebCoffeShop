@@ -1,6 +1,7 @@
 #include "crow_all.h"
 #include "s3-upload.cpp"
 #include <iostream>
+
 using namespace std;
 
  int send_to_s3(string file_name,string file_data){
@@ -17,8 +18,10 @@ using namespace std;
      Aws::SDKOptions options;
      Aws::InitAPI(options);
      {
+
+         Aws::String aws_s(file_name.c_str(), file_name.size());
          const Aws::String bucket_name = "prog-ttest-1";
-         const Aws::String object_name = file_name;
+         const Aws::String object_name = aws_s;
          const Aws::String region = "us-east-1";
 
          if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
@@ -66,19 +69,25 @@ int main(void) {
 
     });
 
-  //  CROW_ROUTE(app, "/send")
-  //      .methods("POST"_method)
-  //  ([](const crow::request& req)
-  //  {
-        // simply by reading a crow::request
+    CROW_ROUTE(app, "/send").methods("POST"_method) ([](const crow::request& req) {
+
+        //  simply by reading a crow::request
+
         // crow::multipart::message
-        // Once a multipart message has been made, the individual parts can be accessed throught mpmes.parts, parts is an std::vector, so accessing the individual parts should be straightforward.
-        // In order to access the individual part's name or filename, something like mpmes.parts[0].headers[0].params["name"] sould do the trick.
-    //    auto msg = crow::multipart::message(req);
+
+        //  Once a multipart message has been made, the individual parts can be accessed throught mpmes.parts, parts is an std::vector, so accessing the individual parts should be straightforward.
+        //  In order to access the individual part's name or filename, something like mpmes.parts[0].headers[0].params["name"] sould do the trick.
+        
+        // auto msg = crow::multipart::message(req);
+
+        auto msg = crow::multipart::message(req);
+
         // Parts index is defined by the HTML form.
-    //    send_to_s3(msg.parts[5].headers[0].params["filename"],msg.parts[5].body);
-    //    return "";
-    //});
+        send_to_s3(msg.parts[5].headers[0].params["filename"],msg.parts[5].body);
+
+        return "";
+
+     });
 
     CROW_ROUTE(app, "/css/cafeteria.css") ([]() {
 
