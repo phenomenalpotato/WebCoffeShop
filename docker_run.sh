@@ -17,7 +17,7 @@ docker rm webfss
 # docker run -d --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "make execute_and_compile"
 
 # And if you want to execute without Dettach
-docker run --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "${COMP} -std=c++11 ${sfile} -Werror -W#warnings -Wall -lboost_thread -lboost_system -lz -pthread -o ${BIN}"
+docker run --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "./gamer"
 
 # docker run --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "make execute_and_compile"
 

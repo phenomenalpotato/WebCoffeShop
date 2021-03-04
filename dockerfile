@@ -27,18 +27,13 @@ RUN make install
 
 ADD . /var/
 
+# To start the container in the /var directory
 WORKDIR /var/
 
 RUN mv include/awsdoc /usr/local/include/
 
-# If you want only to build the S3-Upload-Object/s3-upload.cpp
-# WORKDIR S3-Upload-Object/
-
 RUN cmake CMakeLists.txt
 
 RUN make
-
-# To start the container in the /var directory
-WORKDIR /var/
 
 EXPOSE 8080
