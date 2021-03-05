@@ -19,7 +19,11 @@ RUN git clone https://github.com/aws/aws-sdk-cpp.git
 
 WORKDIR aws-sdk-cpp/
 
-RUN cmake CMakeLists.txt -D BUILD_ONLY="s3"
+RUN ls -lha
+
+RUN cmake CMakeLists.txt -DBUILD_ONLY="s3"
+# If it gives an error "This directory don't exist", in this part, comment the line above and try: 
+# RUN cmake CMakeLists.txt -D BUILD_ONLY="s3"
 
 RUN make
 

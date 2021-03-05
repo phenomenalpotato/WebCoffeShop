@@ -17,7 +17,7 @@ docker rm webfss
 # docker run -d --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "make execute_and_compile"
 
 # And if you want to execute without Dettach
-docker run --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "./gamer"
+docker run --rm -p 8000:8080 --name webfss -e AWS_ACCESS_KEY_ID=AKIASTO337FTKDL3XJ56 -e AWS_SECRET_ACCESS_KEY=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 webfss:latest /bin/bash -c "./gamer"
 
 # docker run --rm -p 8000:8080 --name webfss webfss:latest /bin/bash -c "make execute_and_compile"
 
