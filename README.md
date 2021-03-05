@@ -36,9 +36,17 @@
 
 <li> <i> <strong> No site da Cafeteria, clique em "Trabalhe conosco". </strong> </i> </li>
 
+<br />
+
+<img src="imagens/cafeteria1-pag.png" alt="cafeteria" width="70%"> </img>
+
 <li> <i> <strong> Preencha o formulário. </strong> </i> </li>
 
 <li> <i> <strong> Escolha um arquivo para ser colocado no bucket, clicando no botão "browse" em "Adicione o Seu Currículo". </strong> </i> </li>
+
+<br />
+
+<img src="imagens/form.png" alt="form" width="30%"> </img>
 
 <li> <b> Dependendo do tamanho do arquivo, pode ser que demore mais ou menos. </b> </li>
 
