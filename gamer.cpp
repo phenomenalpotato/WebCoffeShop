@@ -4,11 +4,9 @@
 
 using namespace std;
 
- int send_to_s3(string file_name,string file_data){
+ int send_to_s3(string file_name,string file_data) {
+    
      //If not string vazia
-
-     //Encoding
-
 
      cout << "Saving: " << file_name;
      std::ofstream out(file_name);
@@ -28,9 +26,9 @@ using namespace std;
              return 1;
          }
      }
+     
      Aws::ShutdownAPI(options);
 
-     // return;
      return 0;
  }
 
@@ -72,13 +70,10 @@ int main(void) {
     CROW_ROUTE(app, "/send").methods("POST"_method) ([](const crow::request& req) {
 
         //  simply by reading a crow::request
-
         // crow::multipart::message
 
         //  Once a multipart message has been made, the individual parts can be accessed throught mpmes.parts, parts is an std::vector, so accessing the individual parts should be straightforward.
         //  In order to access the individual part's name or filename, something like mpmes.parts[0].headers[0].params["name"] sould do the trick.
-        
-        // auto msg = crow::multipart::message(req);
 
         auto msg = crow::multipart::message(req);
 
