@@ -4,33 +4,33 @@
 
 using namespace std;
 
- int send_to_s3(string file_name,string file_data) {
+int send_to_s3(string file_name,string file_data) {
+
+    //If not string vazia
+
+    cout << "Saving: " << file_name;
+    std::ofstream out(file_name);
+    out << file_data;
+    out.close();
+
+    Aws::SDKOptions options;
+    Aws::InitAPI(options);
+    {
+
+        Aws::String aws_s(file_name.c_str(), file_name.size());
+        const Aws::String bucket_name = "prog-ttest-1";
+        const Aws::String object_name = aws_s;
+        const Aws::String region = "us-east-1";
+
+        if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
+            return 1;
+        }
+    }
     
-     //If not string vazia
+    Aws::ShutdownAPI(options);
 
-     cout << "Saving: " << file_name;
-     std::ofstream out(file_name);
-     out << file_data;
-     out.close();
-
-     Aws::SDKOptions options;
-     Aws::InitAPI(options);
-     {
-
-         Aws::String aws_s(file_name.c_str(), file_name.size());
-         const Aws::String bucket_name = "prog-ttest-1";
-         const Aws::String object_name = aws_s;
-         const Aws::String region = "us-east-1";
-
-         if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
-             return 1;
-         }
-     }
-     
-     Aws::ShutdownAPI(options);
-
-     return 0;
- }
+    return 0;
+}
 
 int main(void) {
 
@@ -67,7 +67,7 @@ int main(void) {
 
     });
 
-    CROW_ROUTE(app, "/send").methods("POST"_method) ([](const crow::request& req) {
+    CROW_ROUTE(app, "/send").methods("POST"_method) ([](const crow::request& req, crow::response& res) {
 
         //  simply by reading a crow::request
         // crow::multipart::message
@@ -78,11 +78,24 @@ int main(void) {
         auto msg = crow::multipart::message(req);
 
         // Parts index is defined by the HTML form.
-        send_to_s3(msg.parts[5].headers[0].params["filename"],msg.parts[5].body);
+        int result = send_to_s3(msg.parts[5].headers[0].params["filename"],msg.parts[5].body);
 
-        return "";
+        res.redirect("/sent/"+to_string(result));
+        res.end();
+        
+    });
 
-     });
+    CROW_ROUTE(app, "/sent/<int>")([](int result) {
+        auto submission = crow::mustache::load("/templates/submission.html");
+        crow::mustache::context ctx;
+        if (result==0){
+            ctx["submission_result"]="Recebemos a aplicação com sucesso";
+        }
+        else{
+            ctx["submission_result"]="Infelizmente algo deu errado ):";
+        }
+        return submission.render(ctx);
+    });
 
     CROW_ROUTE(app, "/css/cafeteria.css") ([]() {
 
@@ -113,6 +126,39 @@ int main(void) {
         return style3.render();
 
     });
+
+    // Routes using args are failing.
+    // CROW_ROUTE(app, "/css/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context css3;
+    //     auto css = crow::mustache::load("/css/"+p);
+    //     return css.render();
+
+    // });
+
+
+    // CROW_ROUTE(app, "/js/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context js;
+    //     auto script = crow::mustache::load("/js/"+p);
+    //     return script.render();
+
+    // });
+
+    // CROW_ROUTE(app, "/imagens/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context img;
+    //     auto image = crow::mustache::load("/imagens/"+p);
+    //     return image.render();
+    // });
+
+    // CROW_ROUTE(app, "/fonts/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context fon;
+    //     auto fonte1 = crow::mustache::load("/fonts/"+p);
+    //     return fonte1.render();
+
+    // });    
 
     CROW_ROUTE(app, "/js/materialize.min.js") ([] () {
 
