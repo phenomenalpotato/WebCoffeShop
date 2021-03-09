@@ -7,7 +7,7 @@ docker stop webfss
 docker rm webfss
 
 # If you want to execute the Web Server. Before running, be sure to fill the Environment Variables AWS_ACCESS_KEY_ID AND AWS_SECRET_ACCESS_KEY
-docker run -d --rm -p 8000:8080 --name webfss -e AWS_ACCESS_KEY_ID=your_aws_access_key_id -e AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key webfss:latest /bin/bash -c "./gamer"
+docker run --rm -p 8000:8080 --name webfss -e AWS_ACCESS_KEY_ID=your_aws_access_key_id -e AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key webfss:latest /bin/bash -c "./gamer"
 
 # If you want to enter inside the container that is already running
 # docker exec -it webfss bash

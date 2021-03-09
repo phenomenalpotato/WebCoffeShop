@@ -6,7 +6,10 @@ using namespace std;
 
 int send_to_s3(string file_name,string file_data) {
 
-    //If not string vazia
+    //If no data to upload, fail immediately
+    if (file_name == "" || file_data == ""){
+        return 1;
+    }
 
     cout << "Saving: " << file_name;
     std::ofstream out(file_name);
@@ -36,7 +39,7 @@ int main(void) {
 
     crow::SimpleApp app;
     crow::mustache::set_base(".");
-
+    app.loglevel(crow::LogLevel::WARNING);
     CROW_ROUTE(app, "/") ([]() {
 
         crow::mustache::context ctx;
@@ -86,7 +89,7 @@ int main(void) {
     });
 
     CROW_ROUTE(app, "/sent/<int>")([](int result) {
-        auto submission = crow::mustache::load("/templates/submission.html");
+        auto submission = crow::mustache::load("/submission.html");
         crow::mustache::context ctx;
         if (result==0){
             ctx["submission_result"]="Recebemos a aplicação com sucesso";
