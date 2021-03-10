@@ -71,6 +71,6 @@
 <b> Para saber mais como testar o Cloud One File Storage Security: 
 <a href="https://github.com/SecurityForCloudBuilders/SegurancaParaNuvem/tree/main/SegurancaParaCloudESecOps/SeguracaParaFileStorage"> SeguracaParaFileStorage. </a> 
 
-Ou para os outros módulos para ajudar na sua jornada de construção de Segurança na Cloud: <a href="https://github.com/SecurityForCloudBuilders/SegurancaParaNuvem"> SegurancaParaNuvem. </a></b>
+Ou os outros módulos para ajudar na sua jornada de construção de Segurança na Cloud: <a href="https://github.com/SecurityForCloudBuilders/SegurancaParaNuvem"> SegurancaParaNuvem. </a></b>
 
-<i> <strong> If you want to contribute, feel free to do so! </i> </strong>
+<i> <strong> Sinta-se livre para também contribuir! </i> </strong>
