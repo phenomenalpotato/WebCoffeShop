@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.py": "python",
-        "*.ipp": "cpp",
-        "system_error": "cpp",
-        "functional": "cpp"
-    }
-}

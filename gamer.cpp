@@ -94,7 +94,7 @@ int main(void) {
             ctx["submission_result"]="Recebemos a aplicação com sucesso";
         }
         else{
-            ctx["submission_result"]="Infelizmente algo deu errado ):";
+            ctx["submission_result"]="Infelizmente algo deu errado ): Veja o Terminal para ver o que deu errado!";
         }
         return submission.render(ctx);
     });

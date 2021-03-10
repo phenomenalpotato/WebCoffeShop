@@ -11,7 +11,15 @@
 
 ### Você Pode executar mais facilmente usando um ambiente docker, só execute o script:
 
-    - ./docker_run.sh
+<br />
+
+<ul>
+
+<li> <strong> Primeiro, abra o arquivo e mude as variáveis para os valores que fazem sentido para o seu ambiente! </strong> </li>
+
+<li> <strong>  ./docker_run.sh </strong>  </li>
+
+</ul>
 
 ### Para acessar a página Web, somente: 
 
@@ -57,20 +65,11 @@
 
 ### WARNING:
 
-        - This project/ files are only for DEMONSTRATION purpose!! 
-        - This is a work in progress!!
+        - Este projeto é para o propósito de Demostrações! 
+
 <br />
 
 <hr />
 <br />
-
-### Próximos Passos:
-
-<br />
-
-<b> Para saber mais como testar o Cloud One File Storage Security: 
-<a href="https://github.com/SecurityForCloudBuilders/SegurancaParaNuvem/tree/main/SegurancaParaCloudESecOps/SeguracaParaFileStorage"> SeguracaParaFileStorage. </a> 
-
-Ou os outros módulos para ajudar na sua jornada de construção de Segurança na Cloud: <a href="https://github.com/SecurityForCloudBuilders/SegurancaParaNuvem"> SegurancaParaNuvem. </a></b>
 
 <i> <strong> Sinta-se livre para também contribuir! </i> </strong>
