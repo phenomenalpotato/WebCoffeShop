@@ -1,10 +1,44 @@
-#include "crow.h"
+#include "crow_all.h"
+#include "s3-upload.cpp"
+#include <iostream>
+
+using namespace std;
+
+int send_to_s3(string file_name,string file_data) {
+
+    //If no data to upload, fail immediately
+    if (file_name == "" || file_data == ""){
+        return 1;
+    }
+
+    cout << "Saving: " << file_name;
+    std::ofstream out(file_name);
+    out << file_data;
+    out.close();
+
+    Aws::SDKOptions options;
+    Aws::InitAPI(options);
+    {
+
+        Aws::String aws_s(file_name.c_str(), file_name.size());
+        const Aws::String bucket_name = std::getenv("BUCKET_NAME");
+        const Aws::String object_name = aws_s;
+        const Aws::String region = std::getenv("BUCKET_REGION");
+        if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
+            return 1;
+        }
+    }
+    
+    Aws::ShutdownAPI(options);
+
+    return 0;
+}
 
 int main(void) {
 
     crow::SimpleApp app;
     crow::mustache::set_base(".");
-
+    app.loglevel(crow::LogLevel::WARNING);
     CROW_ROUTE(app, "/") ([]() {
 
         crow::mustache::context ctx;
@@ -33,6 +67,36 @@ int main(void) {
 
         return index.render();
 
+    });
+
+    CROW_ROUTE(app, "/send").methods("POST"_method) ([](const crow::request& req, crow::response& res) {
+
+        //  simply by reading a crow::request
+        // crow::multipart::message
+
+        //  Once a multipart message has been made, the individual parts can be accessed throught mpmes.parts, parts is an std::vector, so accessing the individual parts should be straightforward.
+        //  In order to access the individual part's name or filename, something like mpmes.parts[0].headers[0].params["name"] sould do the trick.
+
+        auto msg = crow::multipart::message(req);
+
+        // Parts index is defined by the HTML form.
+        int result = send_to_s3(msg.parts[5].headers[0].params["filename"],msg.parts[5].body);
+
+        res.redirect("/sent/"+to_string(result));
+        res.end();
+        
+    });
+
+    CROW_ROUTE(app, "/sent/<int>")([](int result) {
+        auto submission = crow::mustache::load("/submission.html");
+        crow::mustache::context ctx;
+        if (result==0){
+            ctx["submission_result"]="Recebemos a aplicação com sucesso";
+        }
+        else{
+            ctx["submission_result"]="Infelizmente algo deu errado ):";
+        }
+        return submission.render(ctx);
     });
 
     CROW_ROUTE(app, "/css/cafeteria.css") ([]() {
@@ -65,6 +129,39 @@ int main(void) {
 
     });
 
+    // Routes using args are failing.
+    // CROW_ROUTE(app, "/css/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context css3;
+    //     auto css = crow::mustache::load("/css/"+p);
+    //     return css.render();
+
+    // });
+
+
+    // CROW_ROUTE(app, "/js/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context js;
+    //     auto script = crow::mustache::load("/js/"+p);
+    //     return script.render();
+
+    // });
+
+    // CROW_ROUTE(app, "/imagens/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context img;
+    //     auto image = crow::mustache::load("/imagens/"+p);
+    //     return image.render();
+    // });
+
+    // CROW_ROUTE(app, "/fonts/<string>") 
+    // ([] (string p) {
+    //     crow::mustache::context fon;
+    //     auto fonte1 = crow::mustache::load("/fonts/"+p);
+    //     return fonte1.render();
+
+    // });    
+
     CROW_ROUTE(app, "/js/materialize.min.js") ([] () {
 
         crow::mustache::context js;
@@ -93,7 +190,7 @@ int main(void) {
 
         return img1;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/cafe2.jpg") ([] () {
 
@@ -103,7 +200,7 @@ int main(void) {
 
         return img3;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/lanche13.jpg") ([] () {
 
@@ -113,7 +210,7 @@ int main(void) {
 
         return img5;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/pao4.jpg") ([] () {
 
@@ -123,7 +220,7 @@ int main(void) {
 
         return img7;
 
-    }); 
+    });
 
     CROW_ROUTE(app, "/imagens/cafe3.jpg") ([] () {
 
