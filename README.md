@@ -1,4 +1,4 @@
-# FSS Demo - Cafeteria
+# Web Site - Cafeteria
 
 ## Uma simples aplicação web que irá fazer o upload de um objeto para um bucket escolhido!
 
