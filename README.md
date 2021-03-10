@@ -1,6 +1,6 @@
 # FSS Demo - Cafeteria
 
-## A simple web application to demo Cloud One File Storage Security!
+## Uma simples aplicação web que irá fazer o upload de um objeto para um bucket escolhido!
 
 <hr />
 <br />
