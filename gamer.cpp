@@ -21,10 +21,9 @@ int send_to_s3(string file_name,string file_data) {
     {
 
         Aws::String aws_s(file_name.c_str(), file_name.size());
-        const Aws::String bucket_name = "prog-ttest-1";
+        const Aws::String bucket_name = std::getenv("BUCKET_NAME");
         const Aws::String object_name = aws_s;
-        const Aws::String region = "us-east-1";
-
+        const Aws::String region = std::getenv("BUCKET_REGION");
         if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
             return 1;
         }
